@@ -13,7 +13,7 @@ RUN export DEBIAN_FRONTEND=noninteractive; \
     apt-get update; \
     apt-get install -y \
         tzdata openssh-server sudo curl ca-certificates wget vim net-tools supervisor cron unzip iputils-ping telnet git iproute2 \
-        exiftool ffmpeg jq rclone \
+        exiftool ffmpeg jq nano rclone \
         --no-install-recommends; \
     apt-get clean; \
     rm -rf /var/lib/apt/lists/*; \
