@@ -9,7 +9,7 @@ docker run -d \
   --name ubuntu \
   -p 2222:22 \
   -e SSH_USER=ubuntu \
-  -e SSH_PASSWORD='ubuntu!23' \
-  ghcr.io/vevc/ubuntu:25.7.14
+  -e SSH_PASSWORD='ubuntu!8080' \
+  ghcr.io/bugmenot081/docker-vps:20250731
 ```
 
