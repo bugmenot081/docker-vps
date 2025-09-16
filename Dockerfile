@@ -8,13 +8,21 @@ ENV TZ=Asia/Kuala_Lumpur \
 
 COPY entrypoint.sh /entrypoint.sh
 COPY reboot.sh /usr/local/sbin/reboot
+COPY workspace /opt/workspace/
 
 RUN export DEBIAN_FRONTEND=noninteractive; \
     apt-get update; \
     apt-get install -y \
         tzdata openssh-server sudo curl ca-certificates wget vim net-tools supervisor cron unzip iputils-ping telnet git iproute2 \
-        exiftool ffmpeg jq nano rclone \
+        exiftool ffmpeg jq nano rclone tmux \
         --no-install-recommends; \
+# Custom :: butterbash
+    mkdir -p /opt/gitrepo_butterbash; \
+    apt-get install -y bc exa fzf ripgrep --no-install-recommends; \
+    git clone https://github.com/drewgrif/butterbash.git /opt/gitrepo_butterbash; \
+    find /opt/workspace -name "*.bash" -print0 | xargs -0 cp -t /opt/gitrepo_butterbash/bash/functions/ \
+#    cp /opt/workspace/tmux/tmux-util.bash /opt/gitrepo_butterbash/bash/functions/; \
+# Finalize up everything
     apt-get clean; \
     rm -rf /var/lib/apt/lists/*; \
     mkdir /var/run/sshd; \
